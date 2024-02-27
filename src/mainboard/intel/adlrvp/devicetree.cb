@@ -92,7 +92,7 @@ chip soc/intel/alderlake
 	# Hybrid storage mode
 	register "hybrid_storage_mode" = "1"
 
-	# Enable CPU PCIE RP 1 using CLK 0
+	# Enable CPU PCIE RP 1 using CLK 4 (M.2 SSD)
 	register "cpu_pcie_rp[CPU_RP(1)]" = "{
 		.clk_req = 4,
 		.clk_src = 4,
@@ -449,7 +449,7 @@ chip soc/intel/alderlake
 			end
 		end
 
-		device ref pcie_rp7 on
+		device ref pcie_rp7 on	# Enabled by the user
                         chip drivers/net
                                 register "customized_leds" = "0x05af"
                                 register "wake" = "GPE0_DW1_02"
@@ -483,7 +483,7 @@ chip soc/intel/alderlake
 				device spi 0 on end
 			end
 		end   # pci 1e.2
-		device ref hda on
+		device ref hda on	# on the Board we using HDA not SNDW interface
 		#	chip drivers/intel/soundwire
 		#		device generic 0 on
 		#			chip drivers/soundwire/alc711
