@@ -1,0 +1,10 @@
+comment "Cherry"
+
+config BOARD_GOOGLE_CHERRY
+	bool "->  Cherry"
+
+config BOARD_GOOGLE_DOJO
+	bool "->  Dojo"
+
+config BOARD_GOOGLE_TOMATO
+	bool "->  Tomato"

@@ -1,0 +1,4 @@
+comment "Myst"
+
+config BOARD_GOOGLE_MYST
+	bool "->  Myst"
