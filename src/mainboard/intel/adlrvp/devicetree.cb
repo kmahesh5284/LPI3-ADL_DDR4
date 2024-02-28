@@ -61,12 +61,23 @@ chip soc/intel/alderlake
 		.flags = PCIE_RP_CLK_REQ_DETECT,
 	}"
 
-	# Enable PCH PCIE RP 7 using CLK 6
+	# Enable PCH PCIE RP 7 using CLK 6 (RTL8111HS LAN)
         register "pch_pcie_rp[PCH_RP(7)]" = "{
                 .clk_src = 6,
+		.clk_req = 6,
                 .flags = PCIE_RP_LTR | PCIE_RP_AER,
         }"
 	register "pcie_clk_config_flag[6]" = "PCIE_CLK_LAN"
+
+	device ref pcie_rp7 on  # Enabled by the user
+                        chip drivers/net
+                                register "customized_leds" = "0x05af"
+                                register "wake" = "GPE0_DW1_02"	#GPD2
+                                register "device_index" = "1"
+                                register "add_acpi_dma_property" = "true"
+                                device  pci 00.0 on end
+                        end
+                end     #RTL8111H Ethernet NIC
 
 	# NOTE: requires GPP_A7 set to Native Function 1 for SRCCLK_OE7
 	register "pch_pcie_rp[PCH_RP(8)]" = "{
@@ -449,16 +460,6 @@ chip soc/intel/alderlake
 			end
 		end
 
-		device ref pcie_rp7 on	# Enabled by the user
-                        chip drivers/net
-                                register "customized_leds" = "0x05af"
-                                register "wake" = "GPE0_DW1_02"
-                                register "device_index" = "1"
-                                register "add_acpi_dma_property" = "true"
-				device  pci 00.0 on end
-                        end
-                end     #RTL8111H Ethernet NIC
-		
 	#	device ref pcie_rp5 on
 	#		chip drivers/wifi/generic
 	#			register "wake" = "GPE0_DW1_05" #GPP_E05
@@ -483,18 +484,7 @@ chip soc/intel/alderlake
 				device spi 0 on end
 			end
 		end   # pci 1e.2
-		device ref hda on	# on the Board we using HDA not SNDW interface
-		#	chip drivers/intel/soundwire
-		#		device generic 0 on
-		#			chip drivers/soundwire/alc711
-		#				# SoundWire Link 0 ID 1
-		#				register "desc" = ""Headset Codec""
-		#				device generic 0.1 on end
-		#			end
-		#		end
-		#	end
-		end
-
+		device ref hda on end	# on the Board we using HDA not SNDW interface
 		device ref smbus on end
    end
 end

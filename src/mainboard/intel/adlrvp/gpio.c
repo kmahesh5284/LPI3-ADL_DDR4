@@ -52,8 +52,6 @@ static const struct pad_config gpio_table[] = {
         PAD_CFG_NF(GPP_A19, NONE, DEEP, NF1),
 	/* 20: NC */
         PAD_NC(GPP_A20, NONE),
-	/* 21 : LAN_ISOLATE# */
-        PAD_CFG_GPO(GPP_A21, 1, DEEP),
 	/* 22: NC */
 	PAD_NC(GPP_A22, NONE),
 	/* 23: NC */
@@ -244,8 +242,6 @@ static const struct pad_config gpio_table[] = {
         PAD_CFG_GPO(GPP_F17, 1, PLTRST),
 	/* 18: NC */
 	PAD_NC(GPP_F18, NONE),
-        /* 19: GPIO pin for PCIE SRCCLKREQ6 */
-	PAD_CFG_NF(GPP_F19, NONE, DEEP, NF1),
         /* 20: M.2_CPU_SSD_RST# */
         PAD_CFG_GPO(GPP_F20, 1, PLTRST),
 	/* 21: NC */
@@ -340,8 +336,6 @@ static const struct pad_config gpio_table[] = {
         PAD_CFG_NF(GPD0, NONE, DEEP, NF1),
         /* 1: BC_ACOK_DSW  */
         PAD_CFG_NF(GPD1, NONE, DEEP, NF1),
-        /* 2: GPD_2_LAN_WAKE_N */
-        PAD_CFG_NF(GPD2, NONE, DEEP, NF1),
         /* 3: GPD_3_PWRBTN_N  */
         PAD_CFG_NF(GPD3, NONE, DEEP, NF1),
         /* 4: GPD_4_SLP_S3_N  */
@@ -361,6 +355,13 @@ static const struct pad_config gpio_table[] = {
 	/* 11: NC */
 	PAD_NC(GPD11, NONE),
 
+	/* Ethernet Lan related GPIO's */
+ 	/* 19: GPIO pin for PCIE SRCCLKREQ6 */
+        PAD_CFG_NF(GPP_F19, NONE, DEEP, NF1),
+	/* 2: GPD_2_LAN_WAKE_N */
+        PAD_CFG_NF(GPD2, NONE, DEEP, NF1),
+	/* 21 : LAN_ISOLATE# */
+        PAD_CFG_GPO(GPP_A21, 1, DEEP),	
 };
 void variant_configure_gpio_pads(void)
 {
