@@ -28,8 +28,6 @@ config BOARD_INTEL_ADLRVP_P
 	select SOC_INTEL_COMMON_BLOCK_HDA_VERB	# Audio Related
 	select DRIVERS_WIFI_GENERIC		# wifi related	
 	select SOC_INTEL_COMMON_BLOCK_PCIE	# PCIe
-	select RT8168_GEN_ACPI_POWER_RESOURCE   # LAN
-        select RT8168_SET_LED_MODE              # LAN
 
 
 config BOARD_INTEL_ADLRVP_P_EXT_EC
