@@ -8,6 +8,18 @@
 /* Pad configuration in ramstage */
 static const struct pad_config gpio_table[] = {
 
+/* ------- Ethernet Lan related GPIO's -------- */
+
+        /* 19: PCIE SRCCLKREQ6- same as RVP */
+        PAD_CFG_NF(GPP_F19, NONE, DEEP, NF1),
+        /* 2: GPD_2_LAN_WAKE_N */
+        PAD_CFG_NF(GPD2, NONE, DEEP, NF1),
+//      PAD_CFG_GPI_IRQ_WAKE(GPD2, NONE, DEEP, LEVEL, INVERT),
+//      PAD_CFG_NF(GPD2, NATIVE, PWROK, NF1),
+//      PAD_CFG_GPI_SCI_LOW(GPD2, NONE, DEEP, EDGE_SINGLE),     
+        /* 21 : LAN_ISOLATE# */
+        PAD_CFG_GPO(GPP_A21, 1, DEEP),
+
 	//A Series
 	/* 0: ESPI_IO0_EC_R / ESPI_IO0_HDR */
   //    PAD_CFG_NF(GPP_A0, NONE, DEEP, NF1),
@@ -355,13 +367,6 @@ static const struct pad_config gpio_table[] = {
 	/* 11: NC */
 	PAD_NC(GPD11, NONE),
 
-	/* Ethernet Lan related GPIO's */
- 	/* 19: GPIO pin for PCIE SRCCLKREQ6 */
-        PAD_CFG_NF(GPP_F19, NONE, DEEP, NF1),
-	/* 2: GPD_2_LAN_WAKE_N */
-        PAD_CFG_NF(GPD2, NONE, DEEP, NF1),
-	/* 21 : LAN_ISOLATE# */
-        PAD_CFG_GPO(GPP_A21, 1, DEEP),	
 };
 void variant_configure_gpio_pads(void)
 {
